@@ -9,7 +9,7 @@ export default function SubmitRentalForm() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('jwt');
     if (!token) {
       alert('Please log in first.');
       return;
@@ -22,30 +22,52 @@ export default function SubmitRentalForm() {
 
     setLoading(true);
 
-    const res = await fetch('https://localhost:5022/api/Rental/SubmitRentalRequest', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        carId,
-        startDate,
-        endDate,
-      }),
-    });
-
-    const result = await res.json();
-    setLoading(false);
-
-    if (res.ok && result.success) {
+    try {
+      const res = await fetch('https://localhost:5022/api/Request/SubmitRentialRequest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          carId,
+          startDate,
+          endDate,
+        }),
+      });
+    
+      const contentType = res.headers.get('content-type');
+      let data;
+    
+      if (contentType && contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        const text = await res.text();
+        throw new Error(text);
+      }
+    
+      if (!res.ok) {
+        throw new Error(data.message || 'Something went wrong.');
+      }
+    
+      console.log('Rental request submitted successfully:', data);
       alert('Rental request submitted!');
-      setCarId('');
-      setStartDate('');
-      setEndDate('');
-    } else {
-      alert(result.message || 'Something went wrong.');
+      // reset form if needed
+    } catch (err) {
+      console.error('Submission failed:', err);
+      alert(err.message || 'Unexpected error occurred.');
     }
+
+    //setLoading(false);
+
+    // if (res.ok && result.success) {
+    //   alert('Rental request submitted!');
+    //   setCarId('');
+    //   setStartDate('');
+    //   setEndDate('');
+    // } else {
+    //   alert(result.message || 'Something went wrong.');
+    // }
   };
 
   return (
