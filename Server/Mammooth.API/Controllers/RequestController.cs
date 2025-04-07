@@ -32,24 +32,23 @@ namespace Mammooth.API.Controllers
         }
 
         [HttpPost("SubmitRentialRequest")]
-        //[Authorize]
         public async Task<IActionResult> SubmitRentalRequest([FromBody] CreateRequestRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var authHeader = HttpContext.Request.Headers["Authorization"].ToString();
+            var authHeader = HttpContext.Request.Headers["Authorization"].ToString().Trim();
             if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
                 return Unauthorized(new { success = false, message = "Token missing or invalid." });
 
-            var token = authHeader.Replace("Bearer ", "");
+            var token = authHeader.Substring("Bearer ".Length).Trim();
 
             var (user, roles) = await _authService.GetUserFromTokenAsync(token);
 
             if (user == null)
                 return Unauthorized(new { success = false, message = "Invalid token." });
 
-            
+
             var userId = user.Id;
             var success = await _requestService.SubmitRentalRequestAsync(request, userId);
 

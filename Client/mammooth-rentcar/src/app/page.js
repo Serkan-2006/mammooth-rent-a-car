@@ -4,8 +4,11 @@ import { useState } from 'react';
 
 export default function SubmitRentalForm() {
   const [carId, setCarId] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const defaultStartDate = '2025-04-07T21:00';
+  const defaultEndDate = '2025-04-07T22:00';
+
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
@@ -43,31 +46,20 @@ export default function SubmitRentalForm() {
         data = await res.json();
       } else {
         const text = await res.text();
-        throw new Error(text);
+        console.log(text)
       }
     
       if (!res.ok) {
         throw new Error(data.message || 'Something went wrong.');
       }
     
-      console.log('Rental request submitted successfully:', data);
       alert('Rental request submitted!');
-      // reset form if needed
+      setCarId('');
+      setLoading(false);
     } catch (err) {
       console.error('Submission failed:', err);
       alert(err.message || 'Unexpected error occurred.');
     }
-
-    //setLoading(false);
-
-    // if (res.ok && result.success) {
-    //   alert('Rental request submitted!');
-    //   setCarId('');
-    //   setStartDate('');
-    //   setEndDate('');
-    // } else {
-    //   alert(result.message || 'Something went wrong.');
-    // }
   };
 
   return (
