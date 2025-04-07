@@ -10,7 +10,5 @@ namespace Mammooth.Domain.Interfaces
         Task<(bool Success, string Message)> DeleteCar(string id);
         Task<(bool Success, string Message)> UpdateCar(string id, CarUpdateModel carUpdateModel);
         Task<(bool Success, string Message, List<CarAdminPreviewModel> dataRetrieved)> GetAllCarEnqueries();
-        Task<(bool Success, string Message)> ApproveRentalRequest(string rentalRequestId);
-        Task<(bool Success, string Message)> RejectRentalRequest(string rentalRequestId);
     }
 }

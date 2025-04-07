@@ -77,44 +77,5 @@ namespace Mammooth.Domain.Services
 
             return (true, "Car inquiries retrieved successfully.", enqueries);
         }
-        public async Task<(bool Success, string Message)> ApproveRentalRequest(string rentalRequestId)
-        {
-            var rentalRequest = await _dbContext.RentalRequests.Include(rr => rr.Car).FirstOrDefaultAsync(rr => rr.Id == rentalRequestId);
-
-            if (rentalRequest == null)
-            {
-                return (false, "Rental request not found.");
-            }
-
-            if (rentalRequest.Status != "Pending")
-            {
-                return (false, "This rental request has already been processed.");
-            }
-
-            rentalRequest.Status = "Approved";
-
-            await _dbContext.SaveChangesAsync();
-            return (true, "Rental request approved successfully.");
-        }
-
-        public async Task<(bool Success, string Message)> RejectRentalRequest(string rentalRequestId)
-        {
-            var rentalRequest = await _dbContext.RentalRequests.Include(rr => rr.Car).FirstOrDefaultAsync(rr => rr.Id == rentalRequestId);
-
-            if (rentalRequest == null)
-            {
-                return (false, "Rental request not found.");
-            }
-
-            if (rentalRequest.Status != "Pending")
-            {
-                return (false, "This rental request has already been processed.");
-            }
-
-            rentalRequest.Status = "Rejected";
-
-            await _dbContext.SaveChangesAsync();
-            return (true, "Rental request rejected successfully.");
-        }
     }
 }
