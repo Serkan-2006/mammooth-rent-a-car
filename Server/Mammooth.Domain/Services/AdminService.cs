@@ -1,6 +1,8 @@
+using Mammooth.Common.DTOs;
 using Mammooth.Common.Requests.Car;
 using Mammooth.Data.Context;
 using Mammooth.Data.Entities;
+using Mammooth.Domain.DTOs;
 using Mammooth.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,7 +41,42 @@ namespace Mammooth.Domain.Services
 
             return (true, "Car added successfully.");
         }
+        public async Task<(bool Success, string Message)> DeleteCar(string id)
+        {
+            var car = await _dbContext.Cars.FindAsync(id);
 
+            if (car == null) return (false, "No car found.");
+
+            _dbContext.Cars.Remove(car);
+            await _dbContext.SaveChangesAsync();
+            return (true, "Car deleted successfully.");
+        }
+        public async Task<(bool Success, string Message)> UpdateCar(string id, CarUpdateModel updatedCar)
+        {
+            var car = await _dbContext.Cars.FindAsync(id);
+            if (car == null) return (false, "No car found.");
+
+            car.Brand = updatedCar.CarName;
+            // car.Seats = 0;
+            // car.Description = updatedCar.Description;
+            // car.PricePerDay = updatedCar.PricePerDay;
+            car.Year = updatedCar.Year;
+            await _dbContext.SaveChangesAsync();
+            return (true, "Car updated successfully.");
+        }
+        public async Task<(bool Success, string Message, List<CarAdminPreviewModel> dataRetrieved)> GetAllCarEnqueries()
+        {
+            var enqueries = await _dbContext.Cars
+                                    .Select(c => new CarAdminPreviewModel(c))
+                                    .ToListAsync();
+
+            if (enqueries == null || enqueries.Count == 0)
+            {
+                return (false, "No car inquiries found.", null);
+            }
+
+            return (true, "Car inquiries retrieved successfully.", enqueries);
+        }
         public async Task<(bool Success, string Message)> ApproveRentalRequest(string rentalRequestId)
         {
             var rentalRequest = await _dbContext.RentalRequests.Include(rr => rr.Car).FirstOrDefaultAsync(rr => rr.Id == rentalRequestId);

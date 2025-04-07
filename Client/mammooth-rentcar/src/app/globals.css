@@ -24,3 +24,760 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 135px;
+  height: 125px;
+}
+
+.nav-buttons-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+.nav-buttons li {
+  margin: 0 20px;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.4s;
+  font-weight: bold;
+}
+
+.nav-buttons a:hover {
+  color: #FFCA29;
+}
+
+.nav-buttons2 {
+  display: flex;
+}
+
+.nav-buttons2 li {
+  margin: 0 20px;
+}
+
+.nav-buttons2 a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.4s;
+  font-weight: bold;
+}
+
+.nav-buttons2 a:hover {
+  color: #FFCA29;
+}
+
+.background-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/assets/mercedes.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.background-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(41, 59, 73, 0.90);
+}
+
+.home-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999999;
+  gap: 10px;
+}
+
+.home-content h1 {
+  color: white;
+  font-size: 48px;
+}
+
+.home-content .moto {
+  color: #FFCA29;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.home-content .subtitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.order-btn {
+  background: #FFAE42;
+  background: linear-gradient(to bottom, #FFAE42 0%, #F09F33 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFAE42), color-stop(100%, #F09F33));
+  background: -webkit-linear-gradient(top, #FFAE42 0%, #F09F33 100%);
+  background: -moz-linear-gradient(top, #FFAE42 0%, #F09F33 100%);
+  background: -o-linear-gradient(top, #FFAE42 0%, #F09F33 100%);
+  background: -ms-linear-gradient(top, #FFAE42 0%, #F09F33 100%);
+  border: 1px solid #E19024;
+  box-shadow: inset 0 1px 0 #FFBD51;
+  -webkit-box-shadow: inset 0 1px 0 #FFBD51;
+  -moz-box-shadow: inset 0 1px 0 #FFBD51;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 11px 16px;
+  text-align: center;
+}
+
+.div-btn {
+  margin-top: 20px;
+}
+
+.background-comments {
+  background-color: bisque;
+  min-height: 45vh;
+}
+
+.comments-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  text-align: center;
+  gap: 70px;
+  flex-wrap: wrap;
+}
+
+.comments-moto {
+  color: #1b1b1b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  font-size: 40px;
+  font-weight: bold;
+  max-width: 800px;
+  white-space: normal;
+  line-height: 1.2;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+
+.icon-box {
+  text-align: center;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, #cfa14e, #b08d40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 12px;
+}
+
+.icon-circle i {
+  font-size: 40px;
+  color: white;
+}
+
+.icon-box p {
+  max-width: 300px;
+  text-align: center;
+  color: #333;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sell-background-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/assets/porsche.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 50vh;
+}
+
+.sell-background-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 5, 7, 0.8);
+}
+
+.sell-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999999;
+  gap: 10px;
+}
+
+.sell-content h1 {
+  font-size: 48px;
+  color: white;
+}
+
+.sell-content .subtitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.form-background-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/assets/deal.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 70vh;
+}
+
+.form-background-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 5, 7, 0.6);
+}
+
+.form-info {
+  z-index: 99999;
+}
+
+.form-info h1 {
+  font-size: 35px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.form-info li {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form {
+  z-index: 9999;
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.form h1 {
+  font-size: 35px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.form input {
+  border-radius: 5px;
+}
+
+.form textarea {
+  border-radius: 5px;
+}
+
+.form select {
+  border-radius: 5px;
+}
+
+.textbox {
+  color: black;
+  width: 200px;
+}
+
+.submit-button {
+  background-color: #ffae42;
+  color: white;
+  z-index: 99999;
+  border-radius: 10px;
+  text-align: center;
+  height: 40px;
+  font-size: x-large;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.contacts-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999999;
+  gap: 10px;
+}
+
+.contacts-content h1 {
+  font-size: 48px;
+  color: white;
+}
+
+.contacts-content .subtitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.contacts-background-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/assets/audi.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 35vh;
+}
+
+.contacts-background-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 5, 7, 0.9);
+}
+
+.contacts-info-background {
+  background-color: whitesmoke;
+  min-height: 46vh;
+  display: flex;
+
+}
+
+.map {
+  margin-left: 200px;
+  margin-top: 20px;
+}
+
+.info-building-content {
+  display: flex;
+}
+
+.info-building-description-location {
+  display: flex;
+  flex-direction: column;
+  padding-left: 100;
+}
+
+.info-building h2 {
+
+  font-family: Halvar, "sans-serif";
+  font-size: 30px;
+  color: #5f5f5f;
+  font-weight: bold;
+  padding-left: 100;
+  padding-top: 30;
+  padding-bottom: 30;
+
+}
+
+.info-building-logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+  margin-bottom: 10px;
+}
+
+/*.info-building-location-logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+}*/
+
+/*.info-building-worktime-logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+}*/
+
+.info-building-display {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.info-building-display-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding-left: 100px;
+  padding-top: 20px;
+}
+
+/*.contact-us-direct-logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+}*/
+
+.contact-us {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-button {
+  display: flex;
+  align-items: center;
+  background-color: #181818;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.contact-button:hover {
+  background-color: #333;
+}
+
+.contact-button i {
+  margin-left: 8px;
+}
+
+.contact-button svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+  margin-left: 8px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.info-building p {
+  color: #1b1b1b;
+}
+
+/* Profile Dropdown */
+.profile-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.profile-button img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  background: #222;
+  color: white;
+  min-width: 160px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile-dropdown {
+  margin-right: 20px;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu li a:hover {
+  color: #ffca29;
+}
+
+.dropdown-menu li:hover {
+  background: #333;
+}
+
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/assets/mercedes.png') no-repeat center center/cover;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-box {
+  background: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 525px;
+  height: auto;
+  width: 100%;
+}
+
+.login-body h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: #333333;
+  font-size: 32px;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.social-btn {
+  width: 100%;
+  padding: 15px;
+  margin: 30px 0 15px 0;
+  border: 1px solid #333333;
+  border-radius: 24px;
+  color: #333333;
+  background-color: white;
+  cursor: pointer;
+}
+
+.login-body input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: gray;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.login-box label {
+  font-size: 14px;
+  color: #333333;
+}
+
+.or-seperator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #333333;
+  margin: 10px 0;
+}
+
+.or-line {
+  width: 150px;
+}
+
+.signup-span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #333333;
+}
+
+.signup-btn {
+  color: #ffca29;
+  text-decoration: underline;
+}
+
+.for-us-background-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/assets/bmw.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 50vh;
+}
+
+.for-us-background-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 5, 5, 0.8);
+}
+
+.for-us-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 99999;
+  align-items: center;
+}
+
+.for-us-content h1 {
+  font-size: 48px;
+  color: white;
+}
+
+.for-us-content .subtitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.for-us-display {
+  background-color: whitesmoke;
+  display: flex;
+  width: 100vw;
+  /* Full width */
+  min-height: 110vh;
+  /* Full height */
+}
+
+.for-us-information {
+  width: 70vw;
+  /* Exactly half of the screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vw;
+  /* Adjust if needed */
+  text-align: left;
+}
+
+.for-us-information h1 {
+  font-size: 36px;
+  font-family: Halvar, "sans-serif";
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.for-us-information h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+}
+
+.for-us-information p {
+  font-size: 16px;
+  color: #666;
+}
+
+.for-us-information ul {
+  list-style: none;
+  padding: 0;
+}
+
+.for-us-information ul li {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.for-us-information ul li::before {
+  content: "•";
+  color: gold;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.imge-content {
+  width: 30vw;
+  /* Exactly half of the screen */
+  height: 100vh;
+  /* Ensure equal height */
+  overflow: hidden;
+  display: flex;
+}
+
+.image-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ensures image fills the container */
+}

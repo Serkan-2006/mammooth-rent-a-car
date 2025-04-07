@@ -18,7 +18,7 @@ namespace Mammooth.Common.Requests.Car
         [Range(1886, 2025, ErrorMessage = "Year must be between 1886 and 2050.")]
         public int Year { get; set; }
         [Required(ErrorMessage = "Seats is required.")]
-        [Range(1886, 2025, ErrorMessage = "Seats must be between 1886 and 2050.")]
+        [Range(1, 5, ErrorMessage = "Seats must be between 1 and 5.")]
         public int Seats { get; set; }
         [Required(ErrorMessage = "Description is required.")]
         [MinLength(5, ErrorMessage = "Description must be at least 5 characters.")]
