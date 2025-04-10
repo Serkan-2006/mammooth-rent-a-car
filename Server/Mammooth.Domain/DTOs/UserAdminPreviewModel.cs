@@ -4,6 +4,7 @@ namespace Mammooth.Common.DTOs
 {
     public class UserAdminPreviewModel
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string CitizenId { get; set; }
@@ -15,14 +16,15 @@ namespace Mammooth.Common.DTOs
 
         public UserAdminPreviewModel(User user)
         {
-            this.FirstName = user.FirstName;
-            this.LastName = user.LastName;
-            this.CitizenId = user.CitizenId;
-            this.PhoneNumber = user.PhoneNumber;
-            this.UserName = user.UserName;
-            this.NormalizedUserName = user.NormalizedUserName;
-            this.Email = user.Email;
-            this.NormalizedEmail = user.NormalizedEmail;
+            Id = user.Id;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            CitizenId = user.CitizenId;
+            PhoneNumber = user.PhoneNumber;
+            UserName = user.UserName;
+            NormalizedUserName = user.NormalizedUserName;
+            Email = user.Email;
+            NormalizedEmail = user.NormalizedEmail;
         }
     }
 }

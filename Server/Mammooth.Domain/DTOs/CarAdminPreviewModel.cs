@@ -13,12 +13,12 @@ namespace Mammooth.Common.DTOs
 
         public CarAdminPreviewModel(Car car)
         {
-            this.CarId = car.Id;
-            this.CarName = car.Brand + " " + car.Model;
-            this.Year = car.Year;
-            this.Seats = car.Seats;
-            this.Description = car.Description;
-            this.PricePerDay = car.PricePerDay;
+            CarId = car.Id;
+            CarName = car.Brand + " " + car.Model;
+            Year = car.Year;
+            Seats = car.Seats;
+            Description = car.Description;
+            PricePerDay = car.PricePerDay;
         }
     }
 }

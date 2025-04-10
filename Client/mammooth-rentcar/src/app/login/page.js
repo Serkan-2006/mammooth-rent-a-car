@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 
-const Page = () => {
+export default function LoginPage() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -45,52 +46,47 @@ const Page = () => {
   };
 
   return (
-    <div className="login-body">
-      <div className="login-container">
-        <div className="login-box">
-          <h1>Влизане</h1>
-          <span className="signup-span">
-            Нямаш акаунт?{" "}
-            <a href="/signup" className="signup-btn">
-              Регистриране 
+    <div className="min-h-screen flex items-center justify-center bg-[url('/assets/login-bg.png')] bg-cover bg-center bg-no-repeat relative overflow-hidden">
+      <div className="bg-neutral-900 p-8 rounded-xl shadow-2xl w-full max-w-md z-10">
+        <div className="flex flex-col items-center mb-6">
+          <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full mb-2" />
+          <h2 className="text-white text-2xl font-semibold">Добре дошли</h2>
+          <p className="text-gray-400 text-sm">
+            Нямате акаунт все още?{" "}
+            <a href="/signup" className="text-blue-500 hover:underline">
+              Регистрирай се
             </a>
-          </span>
-          <button className="social-btn">Влез с Google акаунт</button>
-          <div className="or-seperator">
-            <hr className="or-line" />
-            <p>или</p>
-            <hr className="or-line" />
-          </div>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Твоето потребителско име</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="input-field"
-            />
-            <label htmlFor="password">Твоята парола</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="input-field"
-            />
-            {validation && (
-              <p className="validation-message">{validationMessage}</p>
-            )}
-            <button type="submit" className="login-btn">
-              Влезте
-            </button>
-          </form>
+          </p>
         </div>
+
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            className="w-full px-4 py-2 rounded bg-neutral-800 text-white placeholder-gray-500 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="w-full px-4 py-2 rounded bg-neutral-800 text-white placeholder-gray-500 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {validation && (
+            <p className="validation-message">{validationMessage}</p>
+          )}
+          <button
+            type="submit"
+            className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition"
+          >
+            Влез
+          </button>
+        </form>
       </div>
     </div>
   );
-};
-
-export default Page;
+}

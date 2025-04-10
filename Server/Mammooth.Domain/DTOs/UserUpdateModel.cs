@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Mammooth.Domain.DTOs
 {
     public class UserUpdateModel
