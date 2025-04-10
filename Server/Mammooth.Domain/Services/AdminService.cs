@@ -1,5 +1,7 @@
+using System.Text.RegularExpressions;
 using Mammooth.Common.DTOs;
 using Mammooth.Common.Requests.Car;
+using Mammooth.Common.Requests.User;
 using Mammooth.Data.Context;
 using Mammooth.Data.Entities;
 using Mammooth.Domain.DTOs;
@@ -76,6 +78,87 @@ namespace Mammooth.Domain.Services
             }
 
             return (true, "Car inquiries retrieved successfully.", enqueries);
+        }
+        public async Task<(bool Success, string Message)> AddUser(CreateUserRequest request)
+        {
+            if (string.IsNullOrEmpty(request.FirstName) || string.IsNullOrEmpty(request.LastName))
+            {
+                return (false, "First name and last name are required.");
+            }
+
+            if (string.IsNullOrEmpty(request.CitizenId))
+            {
+                return (false, "Citizen ID is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.PhoneNumber) || !Regex.IsMatch(request.PhoneNumber, @"^\d+$"))
+            {
+                return (false, "Phone number is required and must contain only digits.");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Email) || 
+                    !Regex.IsMatch(request.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                return (false, "A valid email address is required.");
+            }
+
+
+            User newUser = new User
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                CitizenId = request.CitizenId,
+                PhoneNumber = request.PhoneNumber,
+                UserName = request.UserName,
+                NormalizedUserName = request.NormalizedUserName,
+                Email = request.Email,
+                NormalizedEmail = request.NormalizedEmail,
+            };
+
+            _dbContext.Users.Add(newUser);
+
+            await _dbContext.SaveChangesAsync();
+
+            return (true, "User added successfully.");
+        }
+        public async Task<(bool Success, string Message)> DeleteUser(string id)
+        {
+            var user = await _dbContext.Users.FindAsync(id);
+
+            if (user == null) return (false, "No user found.");
+
+            _dbContext.Users.Remove(user);
+            await _dbContext.SaveChangesAsync();
+            return (true, "User deleted successfully.");
+        }
+        public async Task<(bool Success, string Message)> UpdateUser(string id, UserUpdateModel updatedUser)
+        {
+            var user = await _dbContext.Users.FindAsync(id);
+            if (user == null) return (false, "No user found.");
+
+            user.FirstName = updatedUser.FirstName;
+            user.LastName = updatedUser.LastName;
+            user.CitizenId = updatedUser.CitizenId;
+            user.PhoneNumber = updatedUser.PhoneNumber;
+            user.UserName = updatedUser.UserName;
+            user.NormalizedUserName = updatedUser.NormalizedUserName;
+            user.Email = updatedUser.Email;
+            user.NormalizedEmail = updatedUser.NormalizedEmail;
+            await _dbContext.SaveChangesAsync();
+            return (true, "User updated successfully.");
+        }
+        public async Task<(bool Success, string Message, List<UserAdminPreviewModel> dataRetrieved)> GetAllUserEnqueries()
+        {
+            var enqueries = await _dbContext.Users
+                                    .Select(c => new UserAdminPreviewModel(c))
+                                    .ToListAsync();
+
+            if (enqueries == null || enqueries.Count == 0)
+            {
+                return (false, "No user inquiries found.", null);
+            }
+
+            return (true, "User inquiries retrieved successfully.", enqueries);
         }
     }
 }

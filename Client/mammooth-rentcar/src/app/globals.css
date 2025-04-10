@@ -219,6 +219,7 @@ body {
   padding: 20px 30px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   z-index: 2;
+  color: black;
 }
 
 .form-container h1 {
