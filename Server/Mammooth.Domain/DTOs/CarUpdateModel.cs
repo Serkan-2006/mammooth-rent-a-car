@@ -7,10 +7,10 @@ namespace Mammooth.Domain.DTOs
 {
     public class CarUpdateModel
     {
-        public string CarName { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
         public int Year { get; set; }
-        // public int Seats { get; set; }
-        // public string Description { get; set; }
-        // public double PricePerDay { get; set; }
+        public int Seats { get; set; }
+        public double PricePerDay { get; set; }
     }
 }

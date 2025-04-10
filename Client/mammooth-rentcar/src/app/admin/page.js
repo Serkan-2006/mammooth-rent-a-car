@@ -8,7 +8,7 @@ export default function RecentOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingOrder, setEditingOrder] = useState(null);
-  const [editForm, setEditForm] = useState({ name: '', year: '', seats: '', pricePerDay: '' });
+  const [editForm, setEditForm] = useState({ brand: '', model: '', year: '', seats: '', pricePerDay: '' });
 
   useEffect(() => {
     fetchOrders();
@@ -41,7 +41,8 @@ export default function RecentOrders() {
   const openEditModal = (order) => {
     setEditingOrder(order);
     setEditForm({
-      name: order.carName,
+      brand: order.brand || '',
+      model: order.model || '',
       year: order.year || '',
       seats: order.seats || '',
       pricePerDay: order.pricePerDay || '',
@@ -58,7 +59,8 @@ export default function RecentOrders() {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        carName: editForm.name,
+        brand: editForm.brand,
+        model: editForm.model,
         year: editForm.year,
         seats: editForm.seats,
         pricePerDay: editForm.pricePerDay,
@@ -70,7 +72,7 @@ export default function RecentOrders() {
       setOrders((prev) =>
         prev.map((order) =>
           order.carId === editingOrder.carId
-            ? { ...order, ...editForm, carName: editForm.name }
+            ? { ...order, ...editForm, brand: editForm.brand, model: editForm.model }
             : order
         )
       );
@@ -101,7 +103,7 @@ export default function RecentOrders() {
               {orders.map((order, idx) => (
                 <tr key={idx} className="border-b hover:bg-gray-50">
                   <td className="p-3 text-gray-500">{order.carId}</td>
-                  <td className="p-3 text-gray-500">{order.carName}</td>
+                  <td className="p-3 text-gray-500">{order.brand} {order.model}</td>
                   <td className="p-3 text-gray-500">{order.year}</td>
                   <td className="p-3 text-gray-500">{order.seats}</td>
                   <td className="p-3 text-gray-500">{order.pricePerDay} лв.</td>
@@ -126,10 +128,19 @@ export default function RecentOrders() {
                           </div>
                           <form onSubmit={handleEditSubmit} className="space-y-4">
                             <div>
-                              <label className="block text-sm mb-1 text-gray-500">Name</label>
+                              <label className="block text-sm mb-1 text-gray-500">Brand</label>
                               <input
-                                name="name"
-                                value={editForm.name}
+                                name="brand"
+                                value={editForm.brand}
+                                onChange={handleEditChange}
+                                className="w-full border rounded px-3 py-2 text-sm text-gray-500"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm mb-1 text-gray-500">Model</label>
+                              <input
+                                name="model"
+                                value={editForm.model}
                                 onChange={handleEditChange}
                                 className="w-full border rounded px-3 py-2 text-sm text-gray-500"
                               />

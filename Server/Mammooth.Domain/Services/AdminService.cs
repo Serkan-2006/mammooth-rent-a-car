@@ -58,11 +58,11 @@ namespace Mammooth.Domain.Services
             var car = await _dbContext.Cars.FindAsync(id);
             if (car == null) return (false, "No car found.");
 
-            car.Brand = updatedCar.CarName;
-            // car.Seats = 0;
-            // car.Description = updatedCar.Description;
-            // car.PricePerDay = updatedCar.PricePerDay;
+            car.Brand = updatedCar.Brand;
+            car.Model = updatedCar.Model;
             car.Year = updatedCar.Year;
+            car.Seats = updatedCar.Seats;
+            car.PricePerDay = updatedCar.PricePerDay;
             await _dbContext.SaveChangesAsync();
             return (true, "Car updated successfully.");
         }
@@ -96,7 +96,7 @@ namespace Mammooth.Domain.Services
                 return (false, "Phone number is required and must contain only digits.");
             }
 
-            if (string.IsNullOrWhiteSpace(request.Email) || 
+            if (string.IsNullOrWhiteSpace(request.Email) ||
                     !Regex.IsMatch(request.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 return (false, "A valid email address is required.");
