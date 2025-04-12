@@ -42,6 +42,18 @@ namespace Mammooth.Domain.Services
 
         public async Task<bool> SubmitRentalRequestAsync(CreateRequestRequest request, string userId)
         {
+            bool alreadySubmitted = await _context.RentalRequests.AnyAsync(r =>
+                r.UserId == userId &&
+                r.CarId == request.CarId &&
+                r.StartDate == request.StartDate &&
+                r.EndDate == request.EndDate
+            );
+
+            if (alreadySubmitted)
+            {
+                return false;
+            }
+
             var rentalRequest = new RentalRequest
             {
                 Id = Guid.NewGuid().ToString(),
