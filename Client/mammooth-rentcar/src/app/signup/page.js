@@ -48,7 +48,7 @@ export default function SignUpPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.FirstName || !formData.LastName || !formData.CitizenId || !formData.Phone || !formData.Email) {
+    if (!formData.FirstName || !formData.LastName || !formData.CitizenId || !formData.PhoneNumber || !formData.Email) {
       setValidation(true);
       setValidationMessages("Моля попълнете всички полета.");
       return;
