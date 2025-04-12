@@ -23,7 +23,6 @@ export default function SubmitRentalForm() {
     checkAuth();
   }, [router]);
 
-  const [carId, setCarId] = useState('');
   const defaultStartDate = '2025-04-07T21:00';
   const defaultEndDate = '2025-04-07T22:00';
   const [startDate, setStartDate] = useState(defaultStartDate);
@@ -37,7 +36,7 @@ export default function SubmitRentalForm() {
       return;
     }
 
-    if (!carId || !startDate || !endDate) {
+    if (!startDate || !endDate) {
       alert('Please fill in all fields.');
       return;
     }
@@ -45,13 +44,13 @@ export default function SubmitRentalForm() {
     setLoading(true);
 
     try {
-      const res = await fetch('https://localhost:5022/api/Request/SubmitRentialRequest', {
+      const res = await fetch('https://localhost:5022/api/Request/GetAvailableCars', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ carId, startDate, endDate }),
+        body: JSON.stringify({ startDate, endDate }),
       });
 
       const contentType = res.headers.get('content-type');
@@ -68,8 +67,8 @@ export default function SubmitRentalForm() {
         throw new Error(data.message || 'Something went wrong.');
       }
 
-      alert('Rental request submitted!');
-      setCarId('');
+      router.push(`/availablecars?startDate=${startDate}&endDate=${endDate}`);
+
       setLoading(false);
     } catch (err) {
       console.error('Submission failed:', err);
@@ -80,23 +79,14 @@ export default function SubmitRentalForm() {
   return (
     <div className="main">
       <div className="overlay" />
-      <Navbar/>
+      <Navbar />
       <div className="home-header">
-      <img src="/assets/logo.png"/>
-      <h1>Mammoth Rental</h1>
-      <span>Rent a Car for Every Journey</span>
+        <img src="/assets/logo.png" />
+        <h1>Mammoth Rental</h1>
+        <span>Rent a Car for Every Journey</span>
       </div>
       <div className="form-container">
         <div className="form-grid">
-          <div className="form-group">
-            <label>Car ID</label>
-            <input
-              type="text"
-              value={carId}
-              onChange={(e) => setCarId(e.target.value)}
-              placeholder="Enter Car ID"
-            />
-          </div>
           <div className="form-group">
             <label>Pick Up Date & Time</label>
             <input
