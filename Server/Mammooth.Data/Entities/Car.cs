@@ -8,6 +8,7 @@ namespace Mammooth.Data.Entities
         public int Year { get; set; }
         public int Seats { get; set; }
         public required string Description { get; set; }
+        public required string ImageUrl { get; set; }
         public double PricePerDay { get; set; }
         public required ICollection<RentalRequest> RentalRequests { get; set; }
     }

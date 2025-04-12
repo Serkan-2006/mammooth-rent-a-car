@@ -77,6 +77,7 @@ if (app.Environment.IsDevelopment())
                 FirstName = "Alex",
                 LastName = "Ivanov",
                 CitizenId = "0212345678",
+                PhoneNumber = "0878138432",
                 UserName = adminUsername,
                 Email = adminEmail,
                 EmailConfirmed = true

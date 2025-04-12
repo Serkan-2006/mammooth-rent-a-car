@@ -28,5 +28,7 @@ namespace Mammooth.Common.Requests.Car
         [Required(ErrorMessage = "Price is required.")]
         [Range(100, 1000000, ErrorMessage = "Price must be between 100 and 1,000,000")]
         public double PricePerDay { get; set; }
+        [Required(ErrorMessage = "Image URL is required.")]
+        public required string ImageUrl { get; set; }
     }
 }

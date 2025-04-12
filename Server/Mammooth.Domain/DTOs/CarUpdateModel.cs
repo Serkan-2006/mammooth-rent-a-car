@@ -12,5 +12,6 @@ namespace Mammooth.Domain.DTOs
         public int Year { get; set; }
         public int Seats { get; set; }
         public double PricePerDay { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

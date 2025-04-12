@@ -144,7 +144,7 @@ export default function SubmitRentalForm() {
             {cars.map((car) => (
               <div key={car.id} className="bg-white rounded-2xl shadow-md overflow-hidden">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/a/a4/2019_Toyota_Corolla_Icon_Tech_VVT-i_Hybrid_1.8.jpg"
+                  src={car.imageUrl}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4">

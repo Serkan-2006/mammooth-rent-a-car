@@ -11,6 +11,7 @@ namespace Mammooth.Common.DTOs
         public int Seats { get; set; }
         public string Description { get; set; }
         public double PricePerDay { get; set; }
+        public string ImageUrl { get; set; }
 
         public CarAdminPreviewModel(Car car)
         {
@@ -21,6 +22,7 @@ namespace Mammooth.Common.DTOs
             Seats = car.Seats;
             Description = car.Description;
             PricePerDay = car.PricePerDay;
+            ImageUrl = car.ImageUrl;
         }
     }
 }

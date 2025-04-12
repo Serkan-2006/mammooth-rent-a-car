@@ -34,6 +34,7 @@ namespace Mammooth.Domain.Services
                 Seats = request.Seats,
                 Description = request.Description ?? string.Empty,
                 PricePerDay = request.PricePerDay,
+                ImageUrl = request.ImageUrl,
                 RentalRequests = new List<RentalRequest>()
             };
 
@@ -63,6 +64,7 @@ namespace Mammooth.Domain.Services
             car.Year = updatedCar.Year;
             car.Seats = updatedCar.Seats;
             car.PricePerDay = updatedCar.PricePerDay;
+            car.ImageUrl = updatedCar.ImageUrl;
             await _dbContext.SaveChangesAsync();
             return (true, "Car updated successfully.");
         }

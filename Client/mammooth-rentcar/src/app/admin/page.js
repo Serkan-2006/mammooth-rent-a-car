@@ -20,8 +20,8 @@ export default function AdminDashboard() {
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
 
   const [editingCar, setEditingCar] = useState(null);
-  const [editCarForm, setEditCarForm] = useState({ brand: '', model: '', year: '', seats: '', pricePerDay: '' });
-  const [newCarForm, setNewCarForm] = useState({ brand: '', model: '', year: '', seats: '', description: '', pricePerDay: '' });
+  const [editCarForm, setEditCarForm] = useState({ brand: '', model: '', year: '', seats: '', pricePerDay: '', imageUrl: '' });
+  const [newCarForm, setNewCarForm] = useState({ brand: '', model: '', year: '', seats: '', description: '', pricePerDay: '', imageUrl: '' });
 
   const [editingUser, setEditingUser] = useState(null);
   const [editUserForm, setEditUserForm] = useState({ firstName: '', lastName: '', citizenId: '', phoneNumber: '', userName: '', email: '' });
@@ -87,6 +87,7 @@ export default function AdminDashboard() {
       const res = await fetch('https://localhost:5022/api/Admin/GetAllCarEnquieries');
       const result = await res.json();
       if (result.success) setCars(result.data);
+      console.log(result.data)
     } catch (err) {
       console.error('Failed to fetch cars:', err);
     } finally {
@@ -117,6 +118,10 @@ export default function AdminDashboard() {
     } catch (err) {
       console.error("Logout error:", err);
     }
+  };
+
+  const handleLogoutClick = () => {
+    handleLogout();
   };
 
   const handleCarEditChange = (e) => setEditCarForm({ ...editCarForm, [e.target.name]: e.target.value });
@@ -174,7 +179,7 @@ export default function AdminDashboard() {
     const result = await res.json();
     if (result.success) {
       fetchCars();
-      setNewCarForm({ brand: '', model: '', year: '', seats: '', description: '', pricePerDay: '' });
+      setNewCarForm({ brand: '', model: '', year: '', seats: '', description: '', pricePerDay: '', imageUrl: '' });
       setIsAddCarOpen(false);
     }
   };
@@ -194,7 +199,7 @@ export default function AdminDashboard() {
 
   const openCarEditModal = (car) => {
     setEditingCar(car);
-    setEditCarForm({ brand: car.brand, model: car.model, year: car.year, seats: car.seats, pricePerDay: car.pricePerDay });
+    setEditCarForm({ brand: car.brand, model: car.model, year: car.year, seats: car.seats, pricePerDay: car.pricePerDay, imageUrl: car.imageUrl });
     setIsEditOpen(true);
   };
 
@@ -293,6 +298,7 @@ export default function AdminDashboard() {
             { label: "Seats", name: "seats", type: "number" },
             { label: "Description", name: "description", type: "textarea" },
             { label: "Price Per Day", name: "pricePerDay", type: "number" },
+            { label: "Image URL", name: "imageUrl" },
           ].map(({ label, name, type = "text" }) => (
             <div key={name}>
               <label className="block text-sm mb-1 text-gray-500">{label}</label>
@@ -421,6 +427,15 @@ export default function AdminDashboard() {
                                       value={editCarForm.pricePerDay}
                                       onChange={handleCarEditChange}
                                       type="number"
+                                      className="w-full border rounded px-3 py-2 text-sm text-gray-500"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-sm mb-1 text-gray-500">Image URL</label>
+                                    <input
+                                      name="imageUrl"
+                                      value={editCarForm.imageUrl}
+                                      onChange={handleCarEditChange}
                                       className="w-full border rounded px-3 py-2 text-sm text-gray-500"
                                     />
                                   </div>
