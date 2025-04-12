@@ -15,5 +15,7 @@ namespace Mammooth.Domain.Interfaces
         Task<(bool Success, string Message)> DeleteUser(string id);
         Task<(bool Success, string Message)> UpdateUser(string id, UserUpdateModel userUpdateModel);
         Task<(bool Success, string Message, List<UserAdminPreviewModel> dataRetrieved)> GetAllUserEnqueries();
+        Task<(bool Success, string Message, List<RentalRequestModel> dataRetrieved)> GetAllRentalRequests();
+        Task<(bool Success, string Message)> ApproveRentalRequest(string requestId);
     }
 }

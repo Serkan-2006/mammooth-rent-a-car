@@ -110,9 +110,9 @@ namespace Mammooth.Domain.Services
                 CitizenId = request.CitizenId,
                 PhoneNumber = request.PhoneNumber,
                 UserName = request.UserName,
-                NormalizedUserName = request.NormalizedUserName,
+                NormalizedUserName = request.UserName.ToUpper(),
                 Email = request.Email,
-                NormalizedEmail = request.NormalizedEmail,
+                NormalizedEmail = request.Email.ToUpper(),
             };
 
             _dbContext.Users.Add(newUser);
@@ -141,9 +141,9 @@ namespace Mammooth.Domain.Services
             user.CitizenId = updatedUser.CitizenId;
             user.PhoneNumber = updatedUser.PhoneNumber;
             user.UserName = updatedUser.UserName;
-            user.NormalizedUserName = updatedUser.NormalizedUserName;
+            user.NormalizedUserName = updatedUser.UserName.ToUpper();
             user.Email = updatedUser.Email;
-            user.NormalizedEmail = updatedUser.NormalizedEmail;
+            user.NormalizedEmail = updatedUser.Email.ToUpper();
             await _dbContext.SaveChangesAsync();
             return (true, "User updated successfully.");
         }
@@ -160,5 +160,48 @@ namespace Mammooth.Domain.Services
 
             return (true, "User inquiries retrieved successfully.", enqueries);
         }
+
+        public async Task<(bool Success, string Message, List<RentalRequestModel> dataRetrieved)> GetAllRentalRequests()
+        {
+            var requests = await _dbContext.RentalRequests.ToListAsync();
+
+            if (!requests.Any())
+                return (false, "No rental requests found.", null);
+
+            var rentalModels = new List<RentalRequestModel>();
+
+            foreach (var request in requests)
+            {
+                var user = await _dbContext.Users.FindAsync(request.UserId);
+                var car = await _dbContext.Cars.FindAsync(request.CarId);
+
+                if (user == null || car == null) continue;
+
+                rentalModels.Add(new RentalRequestModel(
+                    request,
+                    user.UserName,
+                    $"{car.Brand} {car.Model}"
+                ));
+            }
+
+            return (true, "Rental requests retrieved successfully.", rentalModels);
+        }
+
+        public async Task<(bool Success, string Message)> ApproveRentalRequest(string requestId)
+        {
+            var request = await _dbContext.RentalRequests.FindAsync(requestId);
+
+            if (request == null)
+                return (false, "Rental request not found.");
+
+            if (request.Status == "Approved")
+                return (false, "Request already approved.");
+
+            request.Status = "Approved";
+            _dbContext.RentalRequests.Update(request);
+            await _dbContext.SaveChangesAsync();
+
+            return (true, "Rental request approved successfully.");
+        }        
     }
 }

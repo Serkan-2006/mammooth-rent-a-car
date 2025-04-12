@@ -19,13 +19,7 @@ namespace Mammooth.Common.Requests.User
         [Required(ErrorMessage = "User name is required.")]
         public required string UserName { get; set; }
 
-        [Required(ErrorMessage = "Normalized user name is required.")]
-        public required string NormalizedUserName { get; set; }
-
         [Required(ErrorMessage = "Email is required.")]
         public required string Email { get; set; }
-
-        [Required(ErrorMessage = "Normalized Email is required.")]
-        public required string NormalizedEmail { get; set; }
     }
 }

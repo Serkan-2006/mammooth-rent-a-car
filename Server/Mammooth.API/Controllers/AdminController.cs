@@ -89,5 +89,26 @@ namespace Mammooth.API.Controllers
 
             return Ok(new { success = true, message, data });
         }
+        [HttpGet("GetAllRentalRequests")]
+        public async Task<IActionResult> GetAllRentalRequests()
+        {
+            var (success, message, data) = await _adminService.GetAllRentalRequests();
+
+            if (!success)
+            {
+                return BadRequest(new { success = false, message });
+            }
+
+            return Ok(new { success = true, message, data });
+        }
+        [HttpPut("ApproveRentalRequest/{id}")]
+        public async Task<IActionResult> ApproveRentalRequest(string id)
+        {
+            var result = await _adminService.ApproveRentalRequest(id);
+            if (!result.Success)
+                return BadRequest(new { success = false, message = result.Message });
+
+            return Ok(new { success = true, message = result.Message });
+        }            
     }
 }
